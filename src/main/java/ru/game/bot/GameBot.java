@@ -24,7 +24,7 @@ import java.util.List;
 @Slf4j
 public class GameBot extends TelegramLongPollingBot {
     private static final Logger logger = LoggerFactory.getLogger(GameBot.class);
-    private final static String TOKEN_BOT = "6700660436:AAE8fBsSG7nv9K2ChOAxJr-T93okdUCt9_g";
+    private final static String TOKEN_BOT = "";
     private final static String USERNAME_BOT = "GameXPlayer_bot";
 
     GameBot(String TOKEN_BOT) {
