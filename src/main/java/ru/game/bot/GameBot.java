@@ -18,6 +18,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import javax.validation.constraints.NotNull;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,17 +29,24 @@ public class GameBot extends TelegramLongPollingBot {
     private static final Logger logger = LoggerFactory.getLogger(GameBot.class);
     private final static String TOKEN_BOT = "";
     private final static String USERNAME_BOT = "GameXPlayer_bot";
+    private static final String TOKEN_FILE = "telegram_token.txt";
 
     GameBot(String TOKEN_BOT) {
         super(TOKEN_BOT);
     }
-
-    public static void main(String[] args) {
-        GameBot bot = new GameBot(TOKEN_BOT);
+    private static String readTokenFromFile() throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(TOKEN_FILE))) {
+            return reader.readLine().trim();
+        }
+    }
+    public static void main(String[] args) throws IOException {
+        String tokenFile = readTokenFromFile();
+        GameBot tokenBot = new GameBot(tokenFile);
+        //GameBot tokenBot = new GameBot(TOKEN_BOT);
         TelegramBotsApi botsApi;
         try {
             botsApi = new TelegramBotsApi(DefaultBotSession.class);
-            botsApi.registerBot(bot);
+            botsApi.registerBot(tokenBot);
             logger.info("Bot успешно запущен");
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
