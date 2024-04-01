@@ -21,6 +21,9 @@ import javax.validation.constraints.NotNull;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +41,14 @@ public class GameBot extends TelegramLongPollingBot {
         try (BufferedReader reader = new BufferedReader(new FileReader(TOKEN_FILE))) {
             return reader.readLine().trim();
         }
+    }
+
+    public static String readTokenFromFileStream() throws IOException {
+        Path path = Paths.get(TOKEN_FILE);
+        return Files.lines(path)
+                .findFirst()
+                .orElseThrow(() -> new IOException("Файл токена пуст или не найден"))
+                .trim();
     }
     public static void main(String[] args) throws IOException {
         String tokenFile = readTokenFromFile();
