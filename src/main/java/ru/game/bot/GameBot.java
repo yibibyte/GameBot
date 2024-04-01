@@ -51,7 +51,7 @@ public class GameBot extends TelegramLongPollingBot {
                 .trim();
     }
     public static void main(String[] args) throws IOException {
-        String tokenFile = readTokenFromFile();
+        String tokenFile = readTokenFromFileStream();
         GameBot tokenBot = new GameBot(tokenFile);
         //GameBot tokenBot = new GameBot(TOKEN_BOT);
         TelegramBotsApi botsApi;
