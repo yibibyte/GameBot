@@ -43,7 +43,7 @@ public class GameBot extends TelegramLongPollingBot {
         }
     }
 
-    public static String readTokenFromFileStream() throws IOException {
+    private static String readTokenFromFileStream() throws IOException {
         Path path = Paths.get(TOKEN_FILE);
         return Files.lines(path)
                 .findFirst()
