@@ -1,6 +1,11 @@
 package ru.game.bot;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.configuration2.FileBasedConfiguration;
+import org.apache.commons.configuration2.PropertiesConfiguration;
+import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
+import org.apache.commons.configuration2.builder.fluent.Parameters;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -17,8 +22,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-import javax.validation.constraints.NotNull;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -36,22 +41,23 @@ public class GameBot extends TelegramLongPollingBot {
     GameBot(String TOKEN_BOT) {
         super(TOKEN_BOT);
     }
+
     private static String readTokenFromFile() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(TOKEN_FILE))) {
             return reader.readLine().trim();
         }
     }
 
-/*
-        //Предварительнор нужно будет сделать userbot.txt для вставки своего бота конфиг
+    /*
+            //Предварительнор нужно будет сделать userbot.txt для вставки своего бота конфиг
 
-        private static String readUserNameFromFileStream() throws IOException {
-        Path path = Paths.get(USERNAME_BOT);
-        return Files.lines(path)
-                .findFirst()
-                .orElseThrow(() -> new IOException("Файл токена пуст или не найден"))
-                .trim();
-    }*/
+            private static String readUserNameFromFileStream() throws IOException {
+            Path path = Paths.get(USERNAME_BOT);
+            return Files.lines(path)
+                    .findFirst()
+                    .orElseThrow(() -> new IOException("Файл токена пуст или не найден"))
+                    .trim();
+        }*/
     private static String readTokenFromFileStream() throws IOException {
         Path path = Paths.get(TOKEN_FILE);
         return Files.lines(path)
@@ -59,9 +65,33 @@ public class GameBot extends TelegramLongPollingBot {
                 .orElseThrow(() -> new IOException("Файл токена пуст или не найден"))
                 .trim();
     }
+
+    public static String readPropertyValue(String filename, String key) {
+        String value = "";
+        try {
+            Parameters params = new Parameters();
+            File propertiesFile = new File(filename);
+            FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
+                    new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
+                            .configure(params.fileBased().setFile(propertiesFile));
+            FileBasedConfiguration config = builder.getConfiguration();
+            value = config.getString(key);
+            System.out.println(key + ": " + value);
+
+        } catch (ConfigurationException e) {
+            logger.info("Нельзя прочитать значение, файл не корректен, ошибка " + e.getMessage());
+        }
+        return value;
+    }
+
     public static void main(String[] args) throws IOException {
+
         String tokenFile = readTokenFromFileStream();
         GameBot tokenBot = new GameBot(tokenFile);
+
+        //String TOKEN_VALUE = readPropertyValue("config.properties", USERNAME_BOT);
+        //GameBot tokenBot = new GameBot(TOKEN_VALUE);
+
         //GameBot tokenBot = new GameBot(TOKEN_BOT);
         TelegramBotsApi botsApi;
         try {
@@ -69,6 +99,7 @@ public class GameBot extends TelegramLongPollingBot {
             botsApi.registerBot(tokenBot);
             logger.info("Bot успешно запущен");
         } catch (TelegramApiException e) {
+            logger.error("Ошибка выполнения запуска приложения" + e.getMessage() + e.getCause());
             throw new RuntimeException(e);
         }
     }
@@ -90,7 +121,7 @@ public class GameBot extends TelegramLongPollingBot {
             } else if ("Не играю".equals(message.getText())) {
                 sendMessage(message.getChatId(), "Возможно, тебе стоит попробовать что-то из мира разработки.", "https://stackoverflow.com/");
             } else {
-                sendResponse(message.getChatId(),"Вы ввели не неверную команду");
+                sendResponse(message.getChatId(), "Вы ввели не неверную команду");
             }
         } else if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
@@ -115,7 +146,7 @@ public class GameBot extends TelegramLongPollingBot {
         try {
             execute(message);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            logger.error("Некорректная ошибка Меню: " + e.getMessage() + e.getCause());
         }
     }
 
@@ -188,7 +219,7 @@ public class GameBot extends TelegramLongPollingBot {
         try {
             execute(message);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            logger.error("Некорректная ошибка Меню InlineKeyboardButton : " + e.getMessage() + e.getCause());
         }
     }
 
@@ -199,7 +230,7 @@ public class GameBot extends TelegramLongPollingBot {
         try {
             execute(message);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при работе с SendMessage при выполнении : " + e.getMessage() + e.getCause());
         }
     }
 
@@ -223,10 +254,9 @@ public class GameBot extends TelegramLongPollingBot {
         try {
             execute(message);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при отправки сообщения при выполнении метода sendMessage: " + e.getMessage() + e.getCause());
         }
     }
-
 
     private void sendResponse(Long chatId, String responseText) {
         SendMessage message = new SendMessage();
@@ -247,11 +277,10 @@ public class GameBot extends TelegramLongPollingBot {
         try {
             execute(message);
             logger.info("startBot выполнен");
-        } catch (TelegramApiException e){
+        } catch (TelegramApiException e) {
             logger.error(e.getMessage());
         }
     }
-
 
     @Override
     public String getBotUsername() {
