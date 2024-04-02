@@ -30,7 +30,6 @@ import java.util.List;
 @Slf4j
 public class GameBot extends TelegramLongPollingBot {
     private static final Logger logger = LoggerFactory.getLogger(GameBot.class);
-    private final static String TOKEN_BOT = "";
     private final static String USERNAME_BOT = "GameXPlayer_bot";
     private static final String TOKEN_FILE = "telegram_token.txt";
 
@@ -43,6 +42,16 @@ public class GameBot extends TelegramLongPollingBot {
         }
     }
 
+/*
+        //Предварительнор нужно будет сделать userbot.txt для вставки своего бота конфиг
+
+        private static String readUserNameFromFileStream() throws IOException {
+        Path path = Paths.get(USERNAME_BOT);
+        return Files.lines(path)
+                .findFirst()
+                .orElseThrow(() -> new IOException("Файл токена пуст или не найден"))
+                .trim();
+    }*/
     private static String readTokenFromFileStream() throws IOException {
         Path path = Paths.get(TOKEN_FILE);
         return Files.lines(path)
