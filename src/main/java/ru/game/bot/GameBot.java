@@ -35,7 +35,7 @@ import java.util.List;
 @Slf4j
 public class GameBot extends TelegramLongPollingBot {
     private static final Logger logger = LoggerFactory.getLogger(GameBot.class);
-    private final static String USERNAME_BOT = "GameXPlayer_bot";
+    private final static String USERNAME_BOT = "Имя_твоего_Бота_bot";
     private static final String TOKEN_FILE = "telegram_token.txt";
 
     GameBot(String TOKEN_BOT) {
