@@ -1,4 +1,4 @@
-<h1 align="center">🇷🇺 Hello, Researcher of Bot 🇷🇺<br><a href="https://github.com/yibibyte/GameBot.git" target="_blank">Get gitlink GameBot to clone</a> <br>or<br> Gitverse <br><a href="https://gitverse.ru/sc/iluser/GameBot.git" target="_blank"><br>Get from Gitverse.ru</a> 
+<h1 align="center">🇷🇺 Hello, Researcher of Bot 🇷🇺<br><a href="https://github.com/yibibyte/GameBot.git" target="_blank">Get gitlink GameBot to clone</a> <br>or<br> Gitverse <a href="https://gitverse.ru/sc/iluser/GameBot.git" target="_blank">get from Gitverse.ru</a> 
 <img src="https://github.com/yibibyte/GameBot/blob/master/bot.jpg" width="32" height="32" "/></h1>
 <br><img src="https://github.com/yibibyte/GameBot/blob/master/icon_bot.gif" alt="Telegram Бот">
 <h3 align="center">I'm developer and teacher, writer IT news </h3>
