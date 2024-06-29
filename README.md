@@ -4,6 +4,6 @@
 <h3 align="center">I'm developer and teacher, writer IT news </h3>
 <h3 align="center">This Telegram bot</h3>
 <h3 align="center">🇷🇺 Hello from Russia &#127479;&#127482;</h3>
-<h3 align="center"> Contact telegram <a href="https://t.me/ilmanuser" target="_blank">iluser</a> </h3>
+<h3 align="center"> Contact me <a href="https://t.me/ilmanuser" target="_blank">telegram</a> </h3>
 <h1 align="center"><img src="bot/girl_bot.jpg" width="64" height="64" "/> </h1>
 
