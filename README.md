@@ -1,7 +1,10 @@
-<h1 align="center">🇷🇺 Hello, Researcher of Bot 🇷🇺<br><a href="https://github.com/yibibyte/GameBot.git" target="_blank">Get gitlink GameBot to clone</a> <br>or<br> Gitverse <a href="https://gitverse.ru/sc/iluser/GameBot.git" target="_blank">get from Gitverse.ru</a> 
-<img src="https://github.com/yibibyte/GameBot/blob/master/bot.jpg" width="32" height="32" "/></h1>
+<h1 align="center">&#128104;&#8205;&#128187; &#129504; &#127941;  Hello, Researcher of Bot &#10004; &#128213;	&#129516; &#128295; <br></h1>
+  <h2 align="center"><a href="https://github.com/yibibyte/GameBot.git" target="_blank">Get git Bot</a> or from <a href="https://gitverse.ru/sc/iluser/GameBot.git" target="_blank">Gitverse</a> </h2>
+<img src="https://github.com/yibibyte/GameBot/blob/master/bot.jpg" width="32" height="32" "/>
 <br><img src="https://github.com/yibibyte/GameBot/blob/master/icon_bot.gif" alt="Telegram Бот">
 <h3 align="center">I'm developer and teacher, writer IT news </h3>
-<h3 align="center">This simple bot for Telegram bot</h3>
-<h3 align="center">🇷🇺 Hello from Russia 🇷🇺</h3>
+<h3 align="center">This Telegram bot</h3>
+<h3 align="center">🇷🇺 Hello from Russia &#127479;&#127482;</h3>
 <h3 align="center"> Contact telegram <a href="https://t.me/ilmanuser" target="_blank">ilmanuser</a> </h3>
+
+
