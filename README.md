@@ -5,5 +5,5 @@
 <h3 align="center">This Telegram bot</h3>
 <h3 align="center">🇷🇺 Hello from Russia &#127479;&#127482;</h3>
 <h3 align="center"> Contact me <a href="https://t.me/ilmanuser" target="_blank">telegram</a> <img src="bot/bot_write.jpg" width="32" height="32" "/> </h3>
-<h1 align="center"><img src="bot/girl_bot.jpg" width="64" height="64" "/> </h1>
-
+<h1 align="center"><img src="bot/girl_bot.jpg" width="64" height="64" "/>
+<!--  <img src="bot/contact.jpg" width="256" height="256" "/></h1> -->
